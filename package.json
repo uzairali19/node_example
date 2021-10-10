@@ -1,0 +1,20 @@
+{
+  "name": "node_example",
+  "version": "1.0.0",
+  "description": "Node example Coursera Project",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/uzairali19/node_example.git"
+  },
+  "author": "Uzair Ali",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/uzairali19/node_example/issues"
+  },
+  "homepage": "https://github.com/uzairali19/node_example#readme"
+}
