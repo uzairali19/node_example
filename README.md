@@ -1,8 +1,8 @@
 ![](https://img.shields.io/badge/Microverse-blueviolet)
 
-# Contact Form
+# Node Express Server
 
-> The project is a simple node module project just to see some node concepts and the setup behind it.
+> The project is a simple node module project just to see some node concepts and the setup behind it. Mainly focuses on Node, Express and Express router.
 
 # Built With:
 
