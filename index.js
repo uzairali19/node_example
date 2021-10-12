@@ -102,9 +102,59 @@ const morgan = require('morgan');
 
 const hostname = 'localhost';
 const port = 3000;
+const bodyParser = require('body-parser');
 
 const app = express();
 app.use(morgan('dev'));
+app.use(bodyParser.json());
+
+app.all('/dishes', (req, res, next) => {
+  res.statusCode = 200;
+  res.setHeader('Content-type', 'text/plain');
+  next();
+});
+
+app.get('/dishes', (req, res, next) => {
+  res.end('Will send all the dishes');
+});
+
+app.post('/dishes', (req, res, next) => {
+  res.end(
+    'Will add the information to the request body' +
+      req.body.name +
+      'With details:' +
+      req.body.description
+  );
+});
+
+app.put('/dishes', (req, res, next) => {
+  res.statusCode = 403;
+  res.end('PUT is not supported on dishes');
+});
+
+app.delete('/dishes', (req, res, next) => {
+  res.end('Deleting all the dishes');
+});
+
+app.get('/dishes/:dishId', (req, res, next) => {
+  res.end('Will send all the dishes' + req.params.dishId);
+});
+
+app.post('/dishes/:dishId', (req, res, next) => {
+  res.statusCode = 403;
+  res.end(
+    'Will not add the information to the request body' + req.params.dishId
+  );
+});
+
+app.put('/dishes/:dishId', (req, res, next) => {
+  res.write('PUT is supported on dishes' + req.params.dishId + '/n');
+  res.end('PUT is updated all dishes' + req.params.dishId);
+});
+
+app.delete('/dishes/:dishId', (req, res, next) => {
+  res.end('Deleting the dish' + req.params.dishId);
+});
 
 app.use(express.static(__dirname + '/public'));
 
