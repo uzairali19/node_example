@@ -4,27 +4,6 @@ const bodyParser = require('body-parser');
 const dishRouter = express.Router();
 
 dishRouter.use(bodyParser.json());
-
-// app.get('/dishes/:dishId', (req, res, next) => {
-//   res.end('Will send all the dishes' + req.params.dishId);
-// });
-
-// app.post('/dishes/:dishId', (req, res, next) => {
-//   res.statusCode = 403;
-//   res.end(
-//     'Will not add the information to the request body' + req.params.dishId
-//   );
-// });
-
-// app.put('/dishes/:dishId', (req, res, next) => {
-//   res.write('PUT is supported on dishes' + req.params.dishId + '/n');
-//   res.end('PUT is updated all dishes' + req.params.dishId);
-// });
-
-// app.delete('/dishes/:dishId', (req, res, next) => {
-//   res.end('Deleting the dish' + req.params.dishId);
-// });
-
 dishRouter
   .route('/')
   .all((req, res, next) => {
@@ -49,6 +28,31 @@ dishRouter
   })
   .delete((req, res, next) => {
     res.end('Deleting all the dishes');
+  });
+
+dishRouter
+  .route('/:dishId')
+  .get((req, res, next) => {
+    res.end('The fetched dish is: ' + req.params.dishId);
+  })
+  .post((req, res, next) => {
+    res.statusCode = 403;
+    res.end('Cannot add request to the dish:  ' + req.params.dishId);
+  })
+  .put((req, res, next) => {
+    res.write(
+      'The updated dish is: \n' +
+        req.params.dishId +
+        ' with the name: \n' +
+        req.body.name +
+        'And the description as: ' +
+        req.body.description +
+        '\n'
+    );
+    res.end('PUT is updated all dishes' + req.params.dishId);
+  })
+  .delete((req, res, next) => {
+    res.end('Deleting all the data from the dish: ' + req.params.dishId);
   });
 
 module.exports = dishRouter;
